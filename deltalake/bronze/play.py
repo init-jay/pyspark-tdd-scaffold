@@ -50,7 +50,7 @@ class AutoLoad:
     def WriteData(source_stream, ctx: BronzeContext):
         _write = (source_stream.writeStream
                                .option('checkpointLocation', ctx.checkpoint)
-                               .foreachBatch(lambda mdf, batch_id: AutoLoad.micorbatch_ops(mdf, batch_id, ctx))
+                               .foreachBatch(lambda mdf, batch_id: AutoLoad.microbatch_ops(mdf, batch_id, ctx))
                 )
 
         _query = _write.trigger(once=True).start()
