@@ -1,0 +1,40 @@
+{
+  "name": "Python and Java Development",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": ["--network=host"],
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER" : "${localWorkspaceFolder}"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "open",
+      "gradleVersion": "7.5.1",
+      "mavenVersion": "3.8.6",
+      "antVersion": "1.10.12",
+      "groovyVersion": "2.5.22"
+    },
+    "ghcr.io/devcontainers-extra/features/uv:1": {
+      "version": "latest"
+    }
+
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "remote.autoForwardPorts": true,
+        "files.eol":"\n"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+//   "updateContentCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "uv sync",
+  "postStartCommand": ""
+}
